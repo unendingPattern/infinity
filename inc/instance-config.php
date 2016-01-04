@@ -237,6 +237,8 @@ $config['convert_args'] = '-size %dx%d %s -thumbnail %dx%d -quality 85%% -backgr
 $config['site_name'] = "&infin;chan";
 #$config['site_logo'] = "/static/logo_33.svg";
 
+$config['tor_posting'] = true;
+
 // 8chan specific mod pages
 require '8chan-mod-config.php';
 
