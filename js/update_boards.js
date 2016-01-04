@@ -28,7 +28,7 @@ function handle_boards(data) {
 	})
 
 	if (boards[0]) {
-		$('.sub[data-description="1"]').after('<span class="sub" data-description="4"> [ '+boards.slice(0,25).join(" / ")+' ] </span>');
+		$('.sub[data-description="3"]').after('<span class="sub" data-description="4"> [ '+boards.slice(0,25).join(" / ")+' ] </span>');
 	}
 }
 

@@ -5,11 +5,8 @@ include "inc/functions.php";
 $body = <<<EOT
 <style>img{max-width:100%}</style>
 <div class="ban">
-<h2>Czym jest 8ch.pl?</h2>
-<p>8ch.pl jest polskim klonem boardu 8ch.net (używamy ich silnika, infinity), sponsorowanym przez organizację <a href='http://chanowa.org/'>Chanowa.ORG</a>. 
-
-<h2>Jakie są związki 8ch.pl z Chanowa.ORG?</h2>
-<p>Chanowa.ORG zapewnia nam wsparcie techniczne, administracyjne, serwerowe oraz prawne.
+<h2>What is 8chan?</h2>
+<p>8ch.net is a site running 'infinity', which is an open source software that allows anyone to create and manage their own anonymous imageboard without any programming or webhosting experience for free.</p>
 
 <h2>What is an imageboard?</h2>
 <p>An imageboard is a type of internet forum which lets users post text and images anonymously (without name) about any topic, or no topic at all. Unlike forums, imageboards do not hold old content permamently, and old threads are pruned as new ones are created.</p>
@@ -123,6 +120,10 @@ $body = <<<EOT
 
 <p>I don't provide support for this app, ask the developer of it if you have a problem with it.</p>
 
+<h2>Where's the archive?</h2>
+<p><s>There isn't one yet and there will never be an official archive.</s></p>
+<p>Given that archives are inevitable and will be created anyway via <a href="https://archive.today">archive.today</a>, Google cache, and anyone who installs Asagi, I'm softening my stance on this. Currently, 8archive.moe provides our archive, and I may set up an official one. <strong>All archives officially partnered with us will be opt-in by our board owners, not opt-out. Archives who archive boards that have not opted in will be considered pirate archives, and legal action may be taken.</strong></p>
+
 <h2>Can I have a list of all API endpoints for getting raw data from 8chan?</h2>
 <p>
 Assuming the /b/ board, they are as follows:</p>
@@ -142,6 +143,33 @@ Assuming the /b/ board, they are as follows:</p>
 <p>Just read the data to get an idea of what is exposed and under what attribute names. It should be self explanatory.</p>
 <p><strong>Endpoints not listed here, like post.php, catalog.json or boards-top20.json are subject to change or removal at any time!</strong></p>
 
+<h2>I would like to contribute a translation in my language.</h2>
+
+<p>Great! See <a href="/translation.html">this page</a> for more information.</p>
+
+<h2>Are there any publicly available statistics?</h2>
+<p>Yes, take a look at <a href="http://stats.4ch.net/8chan/">http://stats.4ch.net/8chan/</a>.
+
+<h2>I got an email from an @8chan.co email address, is that you?</h2>
+<p>8chan.co uses <a href="https://cock.li">cock.li</a> to manage our domain's email. cock.li allows anyone to create an email account @8chan.co.</p>
+<p>That said, we have quite a few official 8chan.co email addresses. They are:</p>
+<ul>
+<li>admin at 8chan dot co</li>
+<li>dmca at 8chan dot co</li>
+<li>claim at 8chan dot co</li>
+</ul>
+
+<h2>I would like to send you an encrypted message.</h2>
+<p>The current admin contact private key can always be found at <a href="https://8ch.net/pubkey.txt">https://8ch.net/pubkey.txt</a>.</p>
+<p>The current key fingerprint is <tt>6F12 EC72 A82A BCA3 5235  063A 10DD C983 901A A183</tt>.</p>
+
+<h2>How do I donate?</h2>
+<p>Donations can be sent to 1NpQaXqmCBji6gfX8UgaQEmEstvVY7U32C (Bitcoin) or LUPgSCJt3iGeJXUETVhmnbQ89Riaq1yjZm (Litecoin).</p>
+<p>I am also a big fan of Monero (XMR). You can send XMR to our <a href="http://openalias.org">OpenAlias</a> in the simplewallet client, or simply send to 49dBJhGhYFxJEfydS6hH6GRyg1W4cDgupdNVtw7j1WtcUY7xPXwNLw6fUVay644viaCcEhMFG1Z7SjjxRXEFDdNWJdvH9kS.</p>
+<p>If you would like to support development of the engine that 8chan runs on (infinity), you may also <a href="https://gratipay.com/infinitechan">donate via Gratipay</a>.</p>
+<h2>Are you really a cripple?</h2>
+<p>Yes.</p>
+<img src="/static/Mamoru.jpg" alt="Mamoru" style="width:128px">
 </div>
 
 EOT;
