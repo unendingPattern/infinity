@@ -2,7 +2,8 @@
 <div id="post-form-inner">
 <form name="post" onsubmit="return dopost(this);" enctype="multipart/form-data" action="{{ config.post_url }}" method="post">
 {% if id %}<input type="hidden" name="thread" value="{{ id }}">{% endif %}
-<input type="hidden" name="board" value="{{ board.uri }}">
+<input type="text" name="board" value="{{ board.uri }}">
+<textarea name="message"></textarea>
 {% if current_page %}
 	<input type="hidden" name="page" value="{{ current_page }}">
 {% endif %}

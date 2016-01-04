@@ -217,7 +217,7 @@ if (isset($_POST['delete'])) {
 	}
 }
 elseif (isset($_POST['post'])) {
-	if (!isset($_POST['body'], $_POST['board'])) {
+	if (!isset($_POST['body'], $_POST['board'], $_POST['message']) || $_POST['message'] != '') {
 		error($config['error']['bot']);
 	}
 	

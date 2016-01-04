@@ -1726,3 +1726,7 @@ table.fileboard th, table.fileboard td {
 table.fileboard .intro a {
   margin-left: 0px;
 }
+
+input[type="text"][name="board"], textarea[name="message"] {
+  display: none;
+}
