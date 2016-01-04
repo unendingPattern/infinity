@@ -412,13 +412,9 @@ FLAGS;
 			$new_thread_capt = isset($_POST['new_thread_capt']) ? 'true' : 'false';
 			$oekaki = isset($_POST['oekaki']) ? 'true' : 'false';
 			
-			if ($_POST['locale'] === 'en') {
-				$locale = "\$config['locale'] = 'en';";
-			}
-			elseif ($_POST['locale'] !== 'pl_PL' && in_array($_POST['locale'], $possible_languages)) {
+			if ($_POST['locale'] !== 'en' && in_array($_POST['locale'], $possible_languages)) {
 				$locale = "\$config['locale'] = '{$_POST['locale']}.UTF-8';";
-			}
-			else {
+			} else {
 				$locale = '';
 			} 
 

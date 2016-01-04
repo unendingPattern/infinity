@@ -641,7 +641,7 @@ function file_write($path, $data, $simple = false, $skip_purge = false) {
 		}
 	}
 
-	if (!$fp = dio_open($path, O_WRONLY | O_CREAT, 0664))
+	if (!$fp = dio_open($path, O_WRONLY | O_CREAT, 0644))
 		error('Unable to open file for writing: ' . $path);
 
 	// File locking
