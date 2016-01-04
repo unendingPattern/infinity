@@ -348,6 +348,8 @@ function embed_html($link) {
 
 
 class Post {
+	public $clean;
+	
 	public function __construct($post, $root=null, $mod=false) {
 		global $config;
 		if (!isset($root))
@@ -415,10 +417,10 @@ class Post {
 		));
 	}
 	
-	public function getClean( ) {
+	public function getClean($actually_do = false) {
 		global $board, $config;
 		
-		if( !isset( $this->clean ) ) {
+		if( !isset( $this->clean ) && $actually_do ) {
 			if ($config['cache']['enabled'] && $this->clean = cache::get("post_clean_{$board['uri']}_{$this->id}")) {
 				return $this->clean;
 			}
@@ -441,8 +443,10 @@ class Post {
 				if ($config['cache']['enabled'])
 					cache::set("post_clean_{$board['uri']}_{$this->id}", $this->clean);
 			}
+		} else {
+			$this->clean = array();
 		}
-		
+
 		return $this->clean;
 	}
 };
@@ -507,7 +511,9 @@ class Thread extends Post {
 		
 		event('show-thread', $this);
 
-		$built = Element('post_thread.html', array(
+		$file = ($index && $config['file_board']) ? 'post_thread_fileboard.html' : 'post_thread.html';
+
+		$built = Element($file, array(
 			'config' => $config,
 			'board' => $board,
 			'post' => &$this,

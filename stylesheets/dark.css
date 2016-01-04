@@ -8,7 +8,7 @@ body {
 	font-family: sans-serif;
 	font-size: 12px;
 }
-span.quote {
+.quote {
     color:#B8D962;
 }
 h1 {
@@ -23,7 +23,7 @@ div.title, h1 {
 div.title p {
 	font-size: 10px;
 }
-a:link, a:visited, p.intro a.email span.name {
+a:link, a:visited, .intro a.email span.name {
 	color: #CCCCCC;
 	text-decoration: none;
 	font-family: sans-serif;
@@ -61,21 +61,21 @@ div.post.reply div.body a:link, div.post.reply div.body a:visited {
 div.post.reply div.body a:link:hover, div.post.reply div.body a:visited:hover {
 	color: #32DD72;
 }
-p.intro span.subject {
+.intro span.subject {
 	font-size: 12px;
 	font-family: sans-serif;
 	color: #446655;
 	font-weight: 800;
 }
-p.intro span.name {
+.intro span.name {
 	color: #32DD72;
 	font-weight: 800;
 }
-p.intro a.capcode, p.intro a.nametag {
+.intro a.capcode, p.intro a.nametag {
 	color: magenta;
 	margin-left: 0;
 }
-p.intro a.email, p.intro a.email span.name, p.intro a.email:hover, p.intro a.email:hover span.name {
+.intro a.email, p.intro a.email span.name, p.intro a.email:hover, p.intro a.email:hover span.name {
 	color: #32ddaf;
 }
 input[type="text"], textarea, select {
@@ -197,4 +197,42 @@ div.report {
 
 .modlog tr:nth-child(even), .modlog th {
 	background-color: #282A2E;
+}
+
+
+
+.box {
+	background: #333333;
+	border-color: #555555;
+	color: #C5C8C6;
+	border-radius: 10px;
+}
+.box-title {
+	background: transparent;
+	color: #32DD72;
+}
+
+table thead th {
+	background: #333333;
+	border-color: #555555;
+	color: #C5C8C6;
+	border-radius: 4px;
+}
+table tbody tr:nth-of-type( even ) {
+	background-color: #333333;
+}
+
+table.board-list-table .board-uri .board-sfw {
+	color: #CCCCCC;
+}
+tbody.board-list-omitted td {
+	background: #333333;
+	border-color: #555555;
+}
+
+table.board-list-table .board-tags .board-cell:hover {
+	background: #1e1e1e;
+}
+table.board-list-table tr:nth-of-type( even ) .board-tags .board-cell {
+	background: #333333;
 }

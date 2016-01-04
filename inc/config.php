@@ -279,7 +279,8 @@
 		'file_url',
 		'json_response',
 		'user_flag',
-		'no_country'
+		'no_country',
+		'tag'
 	);
 
 	
@@ -307,14 +308,22 @@
 	// Enable custom captcha provider
 	$config['captcha']['enabled'] = false;
 
+	// Custom CAPTCHA provider general settings
+
+	// Captcha expiration:
+	$config['captcha']['expires_in'] = 120; // 120 seconds
+
+	// Captcha length:
+	$config['captcha']['length'] = 6;
+
 	/* 
 	 * Custom captcha provider path (You will need to change these depending on your configuration! It cannot be
 	 * automatically determined because provider_check requires curl which needs to know the domain of your site.)
 	 * 
 	 * Specify yourimageboard.com/$config['root']/8chan-captcha/entrypoint.php for the default provider or write your own
 	 */
-	$config['captcha']['provider_get']   = 'http://localhost/infinity/8chan-captcha/entrypoint.php';
-	$config['captcha']['provider_check'] = 'http://localhost/infinity/8chan-captcha/entrypoint.php';
+	$config['captcha']['provider_get']   = 'http://localhost/8chan-captcha/entrypoint.php';
+	$config['captcha']['provider_check'] = 'http://localhost/8chan-captcha/entrypoint.php';
 
 	// Custom captcha extra field (eg. charset)
 	$config['captcha']['extra'] = 'abcdefghijklmnopqrstuvwxyz';
@@ -661,17 +670,19 @@
 	$config['markup'][] = array(
 		"/\[(aa|code)\](.+?)\[\/(?:aa|code)\]/ms", 
 		function($matches) {
-			$markupchars = array('_', '\'', '~', '*', '=');
+			$markupchars = array('_', '\'', '~', '*', '=', '-');
 			$replacement = $markupchars;
 			array_walk($replacement, function(&$v) {
 				$v = "&#".ord($v).";";
 			});
 
-			// These are hacky fixes for ###board-tags### and >quotes.
+			// These are hacky fixes for ###board-tags###, ellipses and >quotes.
 			$markupchars[] = '###';
 			$replacement[] = '&#35;&#35;&#35;';
 			$markupchars[] = '&gt;';
 			$replacement[] = '&#62;';
+			$markupchars[] = '...';
+			$replacement[] = '..&#46;';
 
 			if ($matches[1] === 'aa') {
 				return '<span class="aa">' . str_replace($markupchars, $replacement, $matches[2]) . '</span>';
@@ -793,12 +804,20 @@
 	// Details: https://github.com/savetheinternet/Tinyboard/issues/20
 	$config['ie_mime_type_detection'] = '/<(?:body|head|html|img|plaintext|pre|script|table|title|a href|channel|scriptlet)/i';
 
+	// Config panel, fileboard: allowed upload extensions
+	$config['fileboard_allowed_types'] = array('zip', '7z', 'tar', 'gz', 'bz2', 'xz', 'swf', 'txt', 'pdf', 'torrent');
+
 	// Allowed image file extensions.
 	$config['allowed_ext'][] = 'jpg';
 	$config['allowed_ext'][] = 'jpeg';
 	$config['allowed_ext'][] = 'gif';
 	$config['allowed_ext'][] = 'png';
 	// $config['allowed_ext'][] = 'svg';
+
+	// Allowed extensions for OP. Inherits from the above setting if set to false. Otherwise, it overrides both allowed_ext and
+	// allowed_ext_files (filetypes for downloadable files should be set in allowed_ext_files as well). This setting is useful
+	// for creating fileboards.
+	$config['allowed_ext_op'] = false;
 
 	// Allowed additional file extensions (not images; downloadable files).
 	// $config['allowed_ext_files'][] = 'txt';
@@ -822,7 +841,7 @@
 	// Location of thumbnail to use for spoiler images.
 	$config['spoiler_image'] = 'static/spoiler.png';
 	// Location of thumbnail to use for deleted images.
-	// $config['image_deleted'] = 'static/deleted.png';
+	$config['image_deleted'] = 'static/deleted.png';
 	// Location of placeholder image for fileless posts in catalog.
 	$config['no_file_image'] = 'static/no-file.png';
 
@@ -1364,6 +1383,12 @@
 	// PM snippet (for ?/inbox) length in characters.
 	$config['mod']['snippet_length'] = 75;
 
+	// Max PMs that can be sent by one user per hour.
+	$config['mod']['pm_ratelimit'] = 100;
+
+	// Maximum size of a PM.
+	$config['mod']['pm_maxsize'] = 8192;
+
 	// Edit raw HTML in posts by default.
 	$config['mod']['raw_html_default'] = false;
 
@@ -1513,7 +1538,7 @@
 	// Edit any users' login information
 	$config['mod']['editusers'] = ADMIN;
 	// Change user's own password
-	$config['mod']['change_password'] = JANITOR;
+	$config['mod']['edit_profile'] = JANITOR;
 	// Delete a user
 	$config['mod']['deleteusers'] = ADMIN;
 	// Create a user
@@ -1527,6 +1552,10 @@
 	$config['mod']['modlog_ip'] = MOD;
 	// Create a PM (viewing mod usernames)
 	$config['mod']['create_pm'] = JANITOR;
+	// Create a PM for anyone 
+	$config['mod']['pm_all'] = ADMIN;
+	// Bypass PM ratelimit
+	$config['mod']['bypass_pm_ratelimit'] = ADMIN;
 	// Read any PM, sent to or from anybody
 	$config['mod']['master_pm'] = ADMIN;
 	// Rebuild everything
@@ -1603,6 +1632,13 @@
 
 	// Allow OP to remove arbitrary posts in his thread
 	$config['user_moderation'] = false;
+
+	// File board. Like 4chan /f/
+	$config['file_board'] = false;
+
+	// Thread tags. Set to false to disable
+	// Example: array('A' => 'Chinese cartoons', 'M' => 'Music', 'P' => 'Pornography');
+	$config['allowed_tags'] = false;
 
 /*
  * ====================
@@ -1759,4 +1795,14 @@
 	$config['report_captcha'] = false;
 
 	// Allowed HTML tags in ?/edit_pages.
-	$config['allowed_html'] = 'a[href|title],p,br,li,ol,ul,strong,em,u,h2,b,i,tt,div,img[src|alt|title],hr';
+	$config['allowed_html'] = 'a[href|title],p,br,li,ol,ul,strong,em,u,h2,b,i,tt,div,img[src|alt|title],hr,h1,h2,h3,h4,h5';
+
+	// Use custom assets? (spoiler file, etc; this is used by ?/settings and ?/assets)
+	$config['custom_assets'] = false;
+
+	// If you use CloudFlare set these for some features to work correctly.
+	$config['cloudflare'] = array();
+	$config['cloudflare']['enabled'] = false;
+	$config['cloudflare']['token'] = 'token';
+	$config['cloudflare']['email'] = 'email';
+	$config['cloudflare']['domain'] = 'example.com';

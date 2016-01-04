@@ -92,7 +92,7 @@ class Api {
 		$apiPost['filename'] = @substr($file->name, 0, strrpos($file->name, '.'));
 		$dotPos = strrpos($file->file, '.');
 		$apiPost['ext'] = substr($file->file, $dotPos);
-		$apiPost['tim'] = substr($file->file, 0, $dotPos);
+		$apiPost['tim'] = urlencode(substr($file->file, 0, $dotPos));
 		if (isset($file->hash))
 			$apiPost['md5'] = base64_encode(hex2bin($file->hash));
 	}
@@ -103,7 +103,14 @@ class Api {
 		$fields = $threadsPage ? $this->threadsPageFields : $this->postFields;
 		$this->translateFields($fields, $post, $apiPost);
 
-		if ($this->config['poster_ids']) $apiPost['id'] = poster_id($post->ip, $post->thread, $board['uri']);
+		if ($this->config['poster_ids']) {
+			if ($post->thread) {
+				$apiPost['id'] = poster_id($post->ip, $post->thread, $board['uri']);
+			} else {
+				$apiPost['id'] = poster_id($post->ip, $post->id, $board['uri']);
+			}
+		}
+
 		if ($threadsPage) return $apiPost;
 
 		// Handle country field

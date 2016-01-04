@@ -329,3 +329,39 @@ form table tr td div {
 .desktop-style div.boardlist:not(.bottom) {
     background-color: #DDDDDD;
 }
+
+
+
+.box {
+	background: #DDDDDD;
+	border-color: #CCCCCC;
+	color: #333333;
+	border-radius: 7px;
+}
+.box-title {
+	border-radius: 7px;
+}
+
+table thead th {
+	background: transparent;
+	border: none;
+}
+table tbody tr:nth-of-type( even ) {
+	background-color: #DDDDDD;
+}
+
+table.board-list-table .board-uri .board-sfw {
+	color: #8A8A8A;
+}
+tbody.board-list-omitted td {
+	background: transparent;
+	border: none;
+}
+
+table.board-list-table .board-tags .board-cell:hover {
+	line-height: 27px;
+	background: #EEEEEE;
+}
+table.board-list-table tr:nth-of-type( even ) .board-tags .board-cell {
+	background: #DDDDDD;
+}

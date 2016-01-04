@@ -177,7 +177,7 @@ function highlightReply(id, event) {
 			post.className += ' highlighted';
 
 			if (history.pushState) {
-				history.pushState(null, null, window.document.location.origin + window.document.location.pathname + window.document.location.search + '#' + id); 
+				history.pushState(null, null, window.document.location.protocol + "//" + window.document.location.host + window.document.location.pathname + window.document.location.search + '#' + id); 
 			} else {
 				window.location.hash = id;
 			}			
@@ -210,6 +210,16 @@ function dopost(form) {
 	}
 	if (form.elements['password']) {
 		localStorage.password = form.elements['password'].value;
+	}
+	if (form.elements['user_flag']) {
+		if (localStorage.userflags) {
+			var userflags = JSON.parse(localStorage.userflags);
+		} else {
+			localStorage.userflags = '{}';
+			userflags = {};
+		}
+		userflags[board_name] = form.elements['user_flag'].value;
+		localStorage.userflags = JSON.stringify(userflags);
 	}
 	if (form.elements['email'] && form.elements['email'].value != 'sage') {
 		localStorage.email = form.elements['email'].value;
@@ -277,6 +287,10 @@ function rememberStuff() {
 			document.forms.post.elements['name'].value = localStorage.name;
 		if (localStorage.email && document.forms.post.elements['email'])
 			document.forms.post.elements['email'].value = localStorage.email;
+		if (localStorage.userflags && document.forms.post.elements['user_flag']) {
+			var userflags = JSON.parse(localStorage.userflags);
+			document.forms.post.elements['user_flag'].value = userflags[board_name];
+		}
 		
 		if (window.location.hash.indexOf('q') == 1)
 			citeReply(window.location.hash.substring(2), true);
@@ -318,9 +332,11 @@ var script_settings = function(script_name) {
 
 function init() {
 	//	store highlighted text for citeReply()
-	document.querySelector('form[name="postcontrols"]').addEventListener('mouseup', function (e) {
-		sessionStorage.quoteClipboard = window.getSelection().toString();
-	});
+	if (document.querySelector('form[name="postcontrols"]') !== null) {
+		document.querySelector('form[name="postcontrols"]').addEventListener('mouseup', function (e) {
+			sessionStorage.quoteClipboard = window.getSelection().toString();
+		});
+	}
 
 	// just enable jquery, almost every script requires it by now. more and more main.js functions are going to start requiring it
 	$('.post-table-options').css('display', 'none');

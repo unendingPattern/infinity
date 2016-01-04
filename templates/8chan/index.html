@@ -2,35 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<link rel="stylesheet" media="screen" href="{{ config.url_stylesheet }}">
 		<title>∞chan</title>
 		<style type="text/css">
-			/* Responsive helpers */
-
-	.col {
-		float: left;
-	}
-	
-	.col-12 { width: 100%; }
-	.col-11 { width: 91.66666667%; }
-	.col-10 { width: 83.33333333%; }
-	.col-9 { width: 75%; }
-	.col-8 { width: 66.66666667%; }
-	.col-7 { width: 58.33333333%; }
-	.col-6 { width: 50%; }
-	.col-5 { width: 41.66666667%; }
-	.col-4 { width: 33.33333333%; }
-	.col-3 { width: 25%; }
-	.col-2 { width: 16.66666667%; }
-	.col-1 { width: 8.33333333%; }
-	
-	.left-push {
-		float: left;
-	}
-	
-	.right-push {
-		float: right;
-	}
-	
 	/* Main */
 	
 	* {
@@ -235,10 +209,10 @@
 				<div class="col col-9 header_text">
 					<em>{% trans %}Welcome to 8chan, the infinitely expanding imageboard.{% endtrans %}</em>
 					<br>
-					<span>[ <a href="/b/">/b/ - Random</a> | <a href="/news+/">/news+/ - News</a> | <a href="/boards/">/boards/ - Boards</a>]</span>
+					<span>[ <a href="/b/">/b/ - Random</a> | <a href="/n/">/n/ - News</a> | <a href="/boards/">/boards/ - Boards</a>]</span>
 					<br>
-					<strong>{% trans %}Top 25 boards:{% endtrans %}</strong>
-					<span class="sub" data-description="3"></span>
+					<!-- <strong>{% trans %}Top 25 boards:{% endtrans %}</strong>
+					<span class="sub" data-description="1"></span>
 					<br>
 					<strong>
 						{% trans %}Boards of the week:{% endtrans %}&nbsp;[&nbsp;
@@ -246,7 +220,7 @@
 							<a href="/{{ board }}">{% if not loop.first %}&nbsp;{% endif %}{{ board }}</a>{% if not loop.last %} /{% endif %}
 						{% endfor %}
 						&nbsp;]
-					</strong> 
+					</strong> -->
 				</div>
 			</header>
 
@@ -302,11 +276,11 @@
 							<a href="create.php" class="button">{% trans %}Create&nbsp;your&nbsp;board{% endtrans %}</a>
 							<a href="boards.html" class="button">{% trans %}Browse&nbsp;existing&nbsp;boards{% endtrans %}</a>
 						</div>
-						<p><table><th><a href="/news+/">Latest headlines</a></th>
+						<p><table><th><a href="/n/">Latest headlines</a></th>
 						<tr><td>
 						<ol style="padding-left:40px">
 							{% for n in newsplus[:15] %}
-								<li><a href="/news+/res/{{ n.thread }}.html">{{ n.subject|e }}</a> (<a href="{{ n.link|e }}">link</a>)</li>
+								<li><a href="/n/res/{{ n.thread }}.html">{{ n.subject|e }}</a> (<a href="{{ n.link|e }}">link</a>)</li>
 							{% endfor %}
 						</ol>
 						</td></tr></table></p>

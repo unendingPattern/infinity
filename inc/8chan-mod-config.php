@@ -15,6 +15,7 @@
 	$config['mod']['mod_board_log'] = MOD;
 	$config['mod']['editpost'] = BOARDVOLUNTEER;
 	$config['mod']['edit_banners'] = MOD;
+	$config['mod']['edit_assets'] = MOD;
 	$config['mod']['edit_flags'] = MOD;
 	$config['mod']['edit_settings'] = MOD;
 	$config['mod']['edit_volunteers'] = MOD;
@@ -42,6 +43,7 @@
 	$config['mod']['view_ban'] = BOARDVOLUNTEER;
 	$config['mod']['reassign_board'] = GLOBALVOLUNTEER;
 	$config['mod']['move'] = GLOBALVOLUNTEER;
+	$config['mod']['pm_all'] = GLOBALVOLUNTEER;
 	$config['mod']['shadow_capcode'] = 'Global Volunteer';
 
 	// Mod pages assignment
@@ -51,3 +53,4 @@
 	$config['mod']['custom_pages']['/flags/(\%b)'] = '8_flags';
 	$config['mod']['custom_pages']['/banners/(\%b)'] = '8_banners';
 	$config['mod']['custom_pages']['/settings/(\%b)'] = '8_settings';
+	$config['mod']['custom_pages']['/assets/(\%b)'] = '8_assets';

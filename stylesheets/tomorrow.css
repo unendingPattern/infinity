@@ -57,7 +57,7 @@ p.intro span.subject {
 p.intro span.name {
   color:#C5C8C6
 }
-span.quote {
+.quote {
   color:#adbd68
 }
 span.heading {
@@ -69,14 +69,15 @@ form table tr th {
   color:#C5C8C6
 }
 div.ban h2 {
-  background:#FCA;
+  background:#282A2E;
   color:inherit
 }
 div.ban {
-  border-color:#800
+  border-color:#282A2E;
 }
-div.ban p {
-  color:#000
+div.ban {
+  color:#C5C8C6;
+  background-color: inherit;
 }
 div.pages {
   background:#1d1f21;
@@ -155,4 +156,40 @@ div#watchlist a:hover,a.watchThread:hover {
 
 .modlog tr:nth-child(even), .modlog th {
 	background-color: #282A2E;
+}
+
+
+
+.box {
+	background: #282a2e;
+	border-color: #111;
+	color: #C5C8C6;
+}
+.box-title {
+	background: #282a2e;
+	color: #C5C8C6;
+}
+
+table thead th {
+	background: #282a2e;
+	border-color: #111;
+	color: #C5C8C6;
+}
+table tbody tr:nth-of-type( even ) {
+	background-color: #282a2e;
+}
+
+table.board-list-table .board-uri .board-sfw {
+	color: #81a2be;
+}
+tbody.board-list-omitted td {
+	background: #282a2e;
+	border-color: #111;
+}
+
+table.board-list-table .board-tags .board-cell:hover {
+	background: #1d1f21;
+}
+table.board-list-table tr:nth-of-type( even ) .board-tags .board-cell {
+	background: #282a2e;
 }
