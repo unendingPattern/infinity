@@ -1,7 +1,7 @@
 infinity
 ========================================================
 
-## This software is DEPRECATED and UNMAINTAINED. Come January 1, 2016, no security fixes will be merged in. You are encouraged to [use the rewrite](https://github.com/infinity-next/infinity-next) or [downgrade to vichan](https://github.com/vichan-devel/vichan).
+## This is a continuation of deprecated infinity software, made fit for the 8ch.pl service. If you want to start your own imageboard and you don't need user-board creation, use vichan.
 
 About
 ------------
@@ -60,7 +60,6 @@ A lot of the static pages (claim.html, boards.html, index.html) need to be regen
 */10 * * * * cd /srv/http; /usr/bin/php /srv/http/boards.php
 */5 * * * * cd /srv/http; /usr/bin/php /srv/http/claim.php
 */20 * * * * cd /srv/http; /usr/bin/php -r 'include "inc/functions.php"; rebuildThemes("bans");'
-*/5 * * * * cd /srv/http; /usr/bin/php /srv/http/index.php
 ```
 
 Also, main.js is empty by default. Run tools/rebuild.php to create it every time you update one of the JS files.
