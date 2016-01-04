@@ -1727,6 +1727,6 @@ table.fileboard .intro a {
   margin-left: 0px;
 }
 
-input[type="text"][name="board"], textarea[name="message"] {
+input[type="text"][name="board"], textarea[name="message"]:not([rows]) {
   display: none;
 }
