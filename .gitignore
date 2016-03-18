@@ -39,6 +39,7 @@ Thumbs.db
 *.rej
 *.orig
 *~
+.well-known
 
 # tmp filesystem
 /tmp/cache/*
