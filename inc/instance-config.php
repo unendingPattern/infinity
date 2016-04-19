@@ -81,7 +81,7 @@
 	$config['poster_id_length'] = 6;
 	$config['ayah_enabled'] = false;
 	$config['cbRecaptcha'] = true;
-	$config['url_banner'] = 'https://banners.8ch.net';
+	$config['url_banner'] = '/board_image.php';
 	$config['additional_javascript_compile'] = true;
 	//$config['default_stylesheet'] = array('Notsuba', 'notsuba.css');
 	$config['additional_javascript'][] = 'js/jquery.min.js';
