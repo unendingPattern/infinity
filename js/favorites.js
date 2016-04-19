@@ -10,8 +10,10 @@
  * XX: favorites.js may conflict with watch.js and compact-boardlist.js
  */
 
-if (!localStorage.favorites) {
-	localStorage.favorites = '["operate","b"]';
+                               //- migrate back from older code which added operate
+                               //- by default and you couldn't remove it
+if (!localStorage.favorites || JSON.parse(localStorage.favorites)[0] == 'operate') {
+	localStorage.favorites = '[]';
 }
 
 function favorite(board) {
