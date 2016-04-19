@@ -420,7 +420,7 @@ FLAGS;
 	function mod_8_banners($b) {
 		global $config, $mod, $board;
 
-		error('Banner editing is currently disabled. Please check back later!');
+		//error('Banner editing is currently disabled. Please check back later!');
 
 		require_once 'inc/image.php';
 
