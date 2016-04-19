@@ -477,7 +477,7 @@ elseif (isset($_POST['post'])) {
 	// Handle our Tor users
 	$tor = checkDNSBL();
 	if ($tor && !(isset($_SERVER['HTTP_X_TOR'], $_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] == '127.0.0.2' && $_SERVER['HTTP_X_TOR'] = 'true'))
-		error('To post on 8chan over Tor, you must use the hidden service for security reasons. You can find it at <a href="http://fullchan4jtta4sx.onion">http://fullchan4jtta4sx.onion</a>.');
+		error('To post on 8chan over Tor, you must use the hidden service for security reasons. You can find it at <a href="http://8ch.vichandcxw4gm3wy.onion/">http://8ch.vichandcxw4gm3wy.onion/</a>.');
 	if ($tor && $post['has_file'] && !$config['tor_image_posting'])
 		error('Sorry. Tor users can\'t upload files on this board.');
 	if ($tor && !$config['tor_posting'])
