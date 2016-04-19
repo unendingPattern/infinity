@@ -40,15 +40,15 @@ if(!$options['quiet'])
 	echo "Clearing template cache...\n";
 
 load_twig();
-//$twig->clearCacheFiles();
+$twig->clearCacheFiles();
 
 if(!$options['quiet'])
 	echo "Regenerating theme files...\n";
-//rebuildThemes('all');
+rebuildThemes('all');
 
 if(!$options['quiet'])
 	echo "Generating Javascript file...\n";
-#buildJavascript();
+buildJavascript();
 
 $main_js = $config['file_script'];
 
