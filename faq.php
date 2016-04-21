@@ -5,8 +5,11 @@ include "inc/functions.php";
 $body = <<<EOT
 <style>img{max-width:100%}</style>
 <div class="ban">
-<h2>What is 8chan?</h2>
-<p>8ch.net is a site running 'infinity', which is an open source software that allows anyone to create and manage their own anonymous imageboard without any programming or webhosting experience for free.</p>
+<h2>How is 8ch.pl affiliated with 8chan (8ch.net)?</h2>
+<p>We reuse their engine, that's why both websites look similar. We don't intend to be 8ch.net competition, but an alternative.
+
+<h2>What is 8ch.pl?</h2>
+<p>8ch.pl is a site running 'infinity', which is an open source software that allows anyone to create and manage their own anonymous imageboard without any programming or webhosting experience for free.</p>
 
 <h2>What is an imageboard?</h2>
 <p>An imageboard is a type of internet forum which lets users post text and images anonymously (without name) about any topic, or no topic at all. Unlike forums, imageboards do not hold old content permamently, and old threads are pruned as new ones are created.</p>
@@ -18,8 +21,8 @@ $body = <<<EOT
 <li>sharing images and multimedia content is as easy as saving and uploading it to the site.</li>
 </ol>
 
-<h2>How is 8chan run?</h2>
-<p>8chan is a service that hosts a large selection of imageboards to browse. These boards are maintained by their respective board owners, who are not affiliated with the 8chan global staff.</p>
+<h2>How is 8ch.pl run?</h2>
+<p>8chan is a service that hosts a large selection of imageboards to browse. These boards are maintained by their respective board owners, who are not affiliated with the 8ch.pl global staff.</p>
 <p>The 8chan global staff are responsible for maintaining the site as a whole and protecting it from spam and illegal content. The administration  is NOT responsible for enforcing any rules outside of the global rule. Any complaints about the content or management of a board should be addressed towards the owner of the board, unless it violates the law of the United States of America, or global policy.</p>
 
 <h2>How do I post a new thread?</h2>
@@ -45,9 +48,10 @@ $body = <<<EOT
 <h2>Are there any global rules regarding content?</h2>
 <p>Only one:</p>
 <ul>
-<li>Do not post, request, or link to any content illegal in the United States of America. Do not create boards with the sole purpose of posting or spreading such content.</li>
+<li>Do not post, request, or link to any content illegal in France. Do not create boards with the sole purpose of posting or spreading such content.</li>
 </ul>
 <p>Other than that, you are free to institute whatever rules you want on your board.</p>
+<p>(the following links represent 8ch.net stance, not ours)
 <p><a href="/obscenity.html">More information about US obscenity laws and how they relate to 8chan boards</a></p>
 <p><a href="/dost.html">More information about the Dost test</a></p>
 
@@ -59,7 +63,7 @@ $body = <<<EOT
 <h2>How do I manage my board?</h2>
 <p>Go to <a href="/mod.php">the volunteer panel</a> and click on the board link for your board.</p>
 <h2>How do I contact the admin?</h2>
-<p>The admin can be reached at <tt>admin at 8chan dot co</tt>.</p>
+<p>The admin can be reached at <tt>anon8 at vichan dot net</tt>.</p>
 
 <h2>What's your privacy policy?</h2>
 <p>Find it <a href="/privacy.pdf">here</a>.</p>
@@ -83,7 +87,7 @@ $body = <<<EOT
 <p>If they are, email me.</p>
 
 <h2>Can you add some new feature?</h2>
-<p>Open a <a href="https://github.com/ctrlcctrlv/8chan/issues">Github issue</a>. Better yet, write it yourself and open a pull request.
+<p>Open a <a href="https://github.com/czaks/8chan/issues">Github issue</a>. Better yet, write it yourself and open a pull request.
 
 <h2>What is "sage"?</h2>
 <p>Posters may reply to threads without bumping them to the top of the index by putting "sage" in the email field.</p>
@@ -133,17 +137,17 @@ $body = <<<EOT
 <p>
 Assuming the /b/ board, they are as follows:</p>
 <ul>
-	<li><a href="https://8ch.net/b/index.rss">https://8ch.net/b/index.rss</a> - RSS formatted index so that you can watch smaller boards and get updates when they get new posts using a feed reader like Thunderbird or Feedly.</li>
-	<li><a href="https://8ch.net/b/0.json">https://8ch.net/b/0.json</a> - Index of all threads on page 0 of /b/.</li>
-	<li><a href="https://8ch.net/b/res/1.json">https://8ch.net/b/res/1.json</a> - All replies of thread 1 on /b/.</li>
-	<li><a href="https://8ch.net/b/threads.json">https://8ch.net/b/threads.json</a> - Thread index of all 15 pages of /b/.</li>
+	<li><a href="https://8ch.pl/b/index.rss">https://8ch.pl/b/index.rss</a> - RSS formatted index so that you can watch smaller boards and get updates when they get new posts using a feed reader like Thunderbird or Feedly.</li>
+	<li><a href="https://8ch.pl/b/0.json">https://8ch.pl/b/0.json</a> - Index of all threads on page 0 of /b/.</li>
+	<li><a href="https://8ch.pl/b/res/1.json">https://8ch.pl/b/res/1.json</a> - All replies of thread 1 on /b/.</li>
+	<li><a href="https://8ch.pl/b/threads.json">https://8ch.pl/b/threads.json</a> - Thread index of all 15 pages of /b/.</li>
 </ul>
 
-<p>There are also endpoints for getting information about 8chan's boards:</p>
+<p>There are also endpoints for getting information about 8ch.pl's boards:</p>
 
 <ul>
-	<li><a href="https://8ch.net/boards.json">https://8ch.net/boards.json</a> - Boards on 8chan (warning, 1MB+)</a></li>
-	<li><a href="https://8ch.net/settings.php?board=b">https://8ch.net/settings.php?board=b</a> - Board settings of /b/ (JSON format)</li>
+	<li><a href="https://8ch.pl/boards.json">https://8ch.pl/boards.json</a> - Boards on 8chan (warning, 1MB+)</a></li>
+	<li><a href="https://8ch.pl/settings.php?board=b">https://8ch.pl/settings.php?board=b</a> - Board settings of /b/ (JSON format)</li>
 </ul>
 <p>Just read the data to get an idea of what is exposed and under what attribute names. It should be self explanatory.</p>
 <p><strong>Endpoints not listed here, like post.php, catalog.json or boards-top20.json are subject to change or removal at any time!</strong></p>
@@ -153,8 +157,10 @@ Assuming the /b/ board, they are as follows:</p>
 <p>Great! See <a href="/translation.html">this page</a> for more information.</p>
 
 <h2>Are there any publicly available statistics?</h2>
-<p>Yes, take a look at <a href="http://stats.4ch.net/8chan/">http://stats.4ch.net/8chan/</a>.
+<!--<p>Yes, take a look at <a href="http://stats.4ch.net/8chan/">http://stats.4ch.net/8chan/</a>.-->
+<p>Nope
 
+<!--
 <h2>I got an email from an @8chan.co email address, is that you?</h2>
 <p>8chan.co uses <a href="https://cock.li">cock.li</a> to manage our domain's email. cock.li allows anyone to create an email account @8chan.co.</p>
 <p>That said, we have quite a few official 8chan.co email addresses. They are:</p>
@@ -167,13 +173,17 @@ Assuming the /b/ board, they are as follows:</p>
 <h2>I would like to send you an encrypted message.</h2>
 <p>The current admin contact private key can always be found at <a href="https://8ch.net/pubkey.txt">https://8ch.net/pubkey.txt</a>.</p>
 <p>The current key fingerprint is <tt>6F12 EC72 A82A BCA3 5235  063A 10DD C983 901A A183</tt>.</p>
+-->
 
 <h2>How do I donate?</h2>
-<p>Donations can be sent to 1NpQaXqmCBji6gfX8UgaQEmEstvVY7U32C (Bitcoin) or LgNczzSm64C3BmaXyFVQnM3PvcmSd196f6 (Litecoin).</p>
+<p>Donations can be sent using Bitcoin to 1BUKMrz3BSr8tAnKGX7xpL7yPb1pVnJWkh (8ch.pl address).</p>
+
+<!--
 <p>I am also a big fan of Monero (XMR). You can send XMR to our <a href="http://openalias.org">OpenAlias</a> in the simplewallet client, or simply send to 49dBJhGhYFxJEfydS6hH6GRyg1W4cDgupdNVtw7j1WtcUY7xPXwNLw6fUVay644viaCcEhMFG1Z7SjjxRXEFDdNWJdvH9kS.</p>
 <h2>Are you really a cripple?</h2>
 <p>Yes.</p>
 <img src="/static/Mamoru.jpg" alt="Mamoru" style="width:128px">
+-->
 </div>
 
 EOT;
