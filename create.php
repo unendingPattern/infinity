@@ -66,8 +66,7 @@ if (sizeof($users) > 0){
 error(_('The username you\'ve tried to enter already exists!'));
 }
 
-$salt = generate_salt();
-$password = hash('sha256', $salt . sha1($password));
+list($salt, $password) = crypt_password($password);
 
 $query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :salt, :type, :boards, :email)');
 $query->bindValue(':username', $username);

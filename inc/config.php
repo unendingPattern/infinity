@@ -1806,3 +1806,18 @@
 	$config['cloudflare']['token'] = 'token';
 	$config['cloudflare']['email'] = 'email';
 	$config['cloudflare']['domain'] = 'example.com';
+
+	// Password hashing function
+	//
+	// $5$ <- SHA256
+	// $6$ <- SHA512
+	//
+	// 25000 rounds make for ~0.05s on my 2015 Core i3 computer.
+	//
+	// https://secure.php.net/manual/en/function.crypt.php
+	$config['password_crypt'] = '$6$rounds=25000$';
+
+	// Password hashing method version
+	// If set to 0, it won't upgrade hashes using old password encryption schema, only create new.
+	// You can set it to a higher value, to further migrate to other password hashing function.
+	$config['password_crypt_version'] = 1;

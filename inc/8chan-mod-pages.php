@@ -65,8 +65,8 @@
 		}
 
 		$password = base64_encode(openssl_random_pseudo_bytes(9));
-		$salt = generate_salt();
-		$hashed = hash('sha256', $salt . sha1($password));
+
+		list($salt, $hashed) = crypt_password($password);
 
 		$query = prepare('UPDATE ``mods`` SET `password` = :hashed, `salt` = :salt, `email` = NULL WHERE BINARY username = :mod');
 		$query->bindValue(':hashed', $hashed);
@@ -115,8 +115,7 @@
 				}
 			}
 
-			$salt = generate_salt();
-			$password = hash('sha256', $salt . sha1($_POST['password']));
+			list($salt, $password) = crypt_password($_POST['password']);
 			
 			$query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :salt, 19, :board, "")');
 			$query->bindValue(':username', $_POST['username']);
