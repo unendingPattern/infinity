@@ -7,6 +7,9 @@
 require 'inc/functions.php';
 require 'inc/mod/pages.php';
 
+if ($config['debug'])
+	$parse_start_time = microtime(true);
+
 check_login(true);
 
 $query = isset($_SERVER['QUERY_STRING']) ? rawurldecode($_SERVER['QUERY_STRING']) : '';
