@@ -87,7 +87,7 @@ class Api {
 		}
 	}
 
-	private function translateFile($file, &$apiPost) {
+	private function translateFile($file, $post, &$apiPost) {
 		$this->translateFields($this->fileFields, $file, $apiPost);
 		$apiPost['filename'] = @substr($file->name, 0, strrpos($file->name, '.'));
 		$dotPos = strrpos($file->file, '.');
@@ -132,14 +132,14 @@ class Api {
 		// Handle files
 		if (isset($post->files) && $post->files && !$threadsPage) {
 			$file = $post->files[0];
-			$this->translateFile($file, $apiPost);
+			$this->translateFile($file, $post, $apiPost);
 			if (sizeof($post->files) > 1) {
 				$extra_files = array();
 				foreach ($post->files as $i => $f) {
 					if ($i == 0) continue;
 				
 					$extra_file = array();
-					$this->translateFile($f, $extra_file);
+					$this->translateFile($f, $post, $extra_file);
 
 					$extra_files[] = $extra_file;
 				}
