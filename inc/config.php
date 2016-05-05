@@ -884,6 +884,9 @@
 	// Set this to true if you're using a BSD
 	$config['bsd_md5'] = false;
 
+	// Set this to true if you're using Linux and you can execute `md5sum` binary.
+	$config['gnu_md5'] = false;
+
 	// Number of posts in a "View Last X Posts" page
 	$config['noko50_count'] = 50;
 	// Number of posts a thread needs before it gets a "View Last X Posts" page.

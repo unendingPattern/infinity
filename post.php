@@ -720,6 +720,10 @@ elseif (isset($_POST['post'])) {
 	
 	
 	if ($post['has_file']) {
+		$md5cmd = false;
+		if ($config['bsd_md5'])  $md5cmd = 'md5 -r';
+		if ($config['gnu_md5'])  $md5cmd = 'md5sum';
+
 		$allhashes = '';
 
 		foreach ($post['files'] as $key => &$file) {
@@ -740,11 +744,12 @@ elseif (isset($_POST['post'])) {
 			if (!is_readable($upload))
 				error($config['error']['nomove']);
 
-			$md5cmd = $config['bsd_md5'] ? 'md5 -r' : 'md5sum';
-			if( ($output = shell_exec_error("cat " . escapeshellarg($upload) . " | $md5cmd")) !== false ) {
-				$explodedvar = explode(' ', $output);
-				$hash = $explodedvar[0];
-			} else {
+			if ($md5cmd) {
+				$output = shell_exec_error($md5cmd . " < " . escapeshellarg($upload));
+				$output = explode(' ', $output);
+				$hash = $output[0];
+			}
+			else {
 				$hash = md5_file($upload);
 			}
 
@@ -760,10 +765,11 @@ elseif (isset($_POST['post'])) {
 			$file['hash'] = $hash;
 			$allhashes .= $hash;
 		}
-		
-		if (count($post['files']) == 1) {
+
+		if (count ($post['files']) == 1) {
 			$post['filehash'] = $hash;
-		} else {
+		}
+		else {
 			$post['filehash'] = md5($allhashes);
 		}
 	}
