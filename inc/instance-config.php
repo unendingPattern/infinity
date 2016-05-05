@@ -51,14 +51,14 @@
 	$config['thumb_keep_animation_frames'] = 1;
 	$config['show_ratio'] = true;
 	//$config['allow_upload_by_url'] = true;
-	$config['max_filesize'] = 1024 * 1024 * 8; // 8MB
+	$config['max_filesize'] = 1024 * 1024 * 60; // 60MB
 	$config['spoiler_images'] = true;
 	$config['image_reject_repost'] = true;
 	$config['allowed_ext_files'][] = 'webm';
 	$config['allowed_ext_files'][] = 'mp4';
 	$config['webm']['use_ffmpeg'] = true;
 	$config['webm']['allow_audio'] = true;
-	$config['webm']['max_length'] = 60 * 120;
+	$config['webm']['max_length'] = 60 * 60 * 4; // 4 hours
 
 	// Mod shit
 	$config['mod']['groups'][25] = 'GlobalVolunteer';
@@ -142,6 +142,7 @@
 	$config['additional_javascript'][] = 'js/file-selector.js';
 	$config['additional_javascript'][] = 'js/gallery-view.js';
 	$config['additional_javascript'][] = 'js/board-directory.js';
+	$config['additional_javascript'][] = 'js/live-index.js';
 	// Oekaki (now depends on config.oekaki so can be in all scripts)
 	$config['additional_javascript'][] = 'js/jquery-ui.custom.min.js';
 	$config['additional_javascript'][] = 'js/wPaint/8ch.js';
