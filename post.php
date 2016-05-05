@@ -715,7 +715,7 @@ elseif (isset($_POST['post'])) {
 	
 	if ($post['has_file']) {
 		$md5cmd = false;
-		if ($config['bsd_md5'])  $md5cmd = 'md5 -r';
+		if ($config['bsd_md5'])  $md5cmd = '/sbin/md5 -r';
 		if ($config['gnu_md5'])  $md5cmd = 'md5sum';
 
 		$allhashes = '';
