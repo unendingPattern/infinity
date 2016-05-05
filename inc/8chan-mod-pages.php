@@ -66,11 +66,11 @@
 
 		$password = base64_encode(openssl_random_pseudo_bytes(9));
 
-		list($salt, $hashed) = crypt_password($password);
+		list($version, $hashed) = crypt_password($password);
 
-		$query = prepare('UPDATE ``mods`` SET `password` = :hashed, `salt` = :salt, `email` = NULL WHERE BINARY username = :mod');
+		$query = prepare('UPDATE ``mods`` SET `password` = :hashed, `version` = :version, `email` = NULL WHERE BINARY username = :mod');
 		$query->bindValue(':hashed', $hashed);
-		$query->bindValue(':salt', $salt);
+		$query->bindValue(':version', $version);
 		$query->bindValue(':mod', $mods[0]['username']);
 		$query->execute();
 
@@ -115,12 +115,12 @@
 				}
 			}
 
-			list($salt, $password) = crypt_password($_POST['password']);
+			list($version, $password) = crypt_password($_POST['password']);
 			
-			$query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :salt, 19, :board, "")');
+			$query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :version, 19, :board, "")');
 			$query->bindValue(':username', $_POST['username']);
 			$query->bindValue(':password', $password);
-			$query->bindValue(':salt', $salt);
+			$query->bindValue(':version', $version);
 			$query->bindValue(':board', $b);
 			$query->execute() or error(db_error($query));
 			
