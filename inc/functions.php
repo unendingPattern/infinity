@@ -131,7 +131,7 @@ function loadConfig() {
 	// So, we may store the locale in a tmp/ filesystem.
 
 	if (file_exists($fn = 'tmp/cache/locale_' . $boardsuffix ) ) {
-		$config['locale'] = file_get_contents($fn);
+		$config['locale'] = @file_get_contents($fn);
 	}
 	else {
 		$config['locale'] = 'en';
@@ -148,7 +148,7 @@ function loadConfig() {
 			$config['locale'] = $matches[count($matches)-1];
 		}
 
-		file_put_contents($fn, $config['locale']);
+		@file_put_contents($fn, $config['locale']);
 	}
 
 	if ($config['locale'] != $current_locale) {
