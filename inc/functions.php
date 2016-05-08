@@ -1934,7 +1934,7 @@ function buildIndex($global_api = "yes") {
 				$content['current_page'] = $page;
 			}
 			elseif (!$antibot) {
-				create_antibot($board['uri']);
+				$antibot = create_antibot($board['uri']);
 			}
 			$antibot->reset();
 			if (!$pages) {
