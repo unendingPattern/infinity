@@ -187,7 +187,8 @@ class Bans {
 
 			if ($ban['post']) {
 				$post = json_decode($ban['post']);
-				if ($post) {
+
+				if ($post && isset($post->body)) {
 					$ban['message'] = $post->body;
 				}
 			}
