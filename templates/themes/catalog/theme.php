@@ -21,10 +21,12 @@
 			foreach ($boards as $board) {
 				$b = new Catalog();
 
-				if ($config['smart_build']) {
+				$action = generation_strategy("sb_catalog", array($board));
+				if ($action == 'delete') {
 					file_unlink($config['dir']['home'] . $board . '/catalog.html');
+					file_unlink($config['dir']['home'] . $board . '/index.rss');
 				}
-				else {
+				elseif ($action == 'rebuild') {
 					$b->build($settings, $board);
 				}
 
@@ -33,10 +35,12 @@
 		} elseif ($action == 'post-thread' || ($settings['update_on_posts'] && $action == 'post') || ($settings['update_on_posts'] && $action == 'post-delete') && (in_array($board, $boards) | $settings['all'])) {
 			$b = new Catalog();
 
-			if ($config['smart_build']) {
+			$action = generation_strategy("sb_catalog", array($board));
+			if ($action == 'delete') {
 				file_unlink($config['dir']['home'] . $board . '/catalog.html');
+				file_unlink($config['dir']['home'] . $board . '/index.rss');
 			}
-			else {
+			elseif ($action == 'rebuild') {
 				$b->build($settings, $board);
 			}
 		}
