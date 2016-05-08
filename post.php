@@ -1076,7 +1076,7 @@ elseif (isset($_POST['post'])) {
 		$build_pages = range(1, $config['max_pages']);
 	
 	if ($post['op'])
-		clean();
+		clean($id);
 	
 	event('post-after', $post);
 	
