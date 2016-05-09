@@ -1111,7 +1111,7 @@ function displayBan($ban) {
 		Element('page.html', array(
 			'title' => _('Banned!'),
 			'config' => $config,
-			'boardlist' => createBoardlist($mod),
+			'boardlist' => createBoardlist(),
 			'body' => Element('banned.html', array(
 				'config' => $config,
 				'ban' => $ban,
