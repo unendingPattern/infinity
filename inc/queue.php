@@ -27,7 +27,7 @@ class Queue {
       while ($n > 0) {
         $path = readdir($dir);
         if ($path === FALSE) break;
-        elseif ($path == '.' || $path == '..') continue;
+        elseif ($path == '.' || $path == '..' || $path == '.gitkeep') continue;
         else { $paths[] = $path; $n--; }
       }
       $out = array();
