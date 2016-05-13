@@ -557,9 +557,9 @@ function openBoard($uri) {
 		$build_pages = array();
 
 	// And what if we don't really need to change a board we have opened?
-	if (isset ($board) && isset ($board['uri']) && $board['uri'] == $uri) {
-		return true;
-	}
+	//if (isset ($board) && isset ($board['uri']) && $board['uri'] === $uri) {
+	//	return true;
+	//}
 
 	$b = getBoardInfo($uri);
 	if ($b) {
