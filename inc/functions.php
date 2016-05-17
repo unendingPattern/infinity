@@ -1377,8 +1377,10 @@ function deleteFile($id, $remove_entirely_if_already=true, $file=null) {
 		foreach ($files as $i => $f) {
 			if (($file !== false && $i == $file) || $file === null) {
 				// Delete thumbnail
-				file_unlink($config['dir']['img_root'] . $board['dir'] . $config['dir']['thumb'] . $f->thumb);
-				unset($files[$i]->thumb);
+				if (isset ($f->thumb) && $f->thumb) {
+					file_unlink($config['dir']['img_root'] . $board['dir'] . $config['dir']['thumb'] . $f->thumb);
+					unset($files[$i]->thumb);
+				}
 
 				// Delete file
 				file_unlink($config['dir']['img_root'] . $board['dir'] . $config['dir']['img'] . $f->file);
