@@ -289,7 +289,7 @@ class Bans {
 			$mod_id = isset($mod['id']) ? $mod['id'] : -1;
 		}
 				
-		if (!in_array($ban_board, $mod['boards']) && $mod['boards'][0] != '*')
+		if ($mod_id > 0 && !in_array($ban_board, $mod['boards']) && $mod['boards'][0] != '*')
 			error($config['error']['noaccess']);
 
 		$range = self::parse_range($mask);
