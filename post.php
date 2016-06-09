@@ -767,13 +767,13 @@ elseif (isset($_POST['post'])) {
 			$post['filehash'] = md5($allhashes);
 		}
 	}
-	
+
 	if (!hasPermission($config['mod']['bypass_filters'], $board['uri'])) {
-		require_once 'inc/filters.php';	
-		
+		require_once 'inc/filters.php';
+
 		do_filters($post);
 	}
-	
+
 	if ($post['has_file']) {
 		foreach ($post['files'] as $key => &$file) {
 		if ($file['is_an_image']) {
@@ -902,6 +902,34 @@ elseif (isset($_POST['post'])) {
 			$file['thumbwidth'] = $size[0];
 			$file['thumbheight'] = $size[1];
 		}
+
+		if ($config['tesseract_ocr']) { // Let's OCR it!
+			$fname = $file['tmp_name'];
+
+			if ($file['height'] > 500 || $file['width'] > 500) {
+				$fname = $file['thumb'];
+			}
+
+			if ($fname == 'spoiler') { // We don't have that much CPU time, do we?
+			}
+			else {
+				$tmpname = "tmp/tesseract/".rand(0,10000000);
+
+				// Preprocess command is an ImageMagick b/w quantization
+				$error = shell_exec_error(sprintf($config['tesseract_preprocess_command'], escapeshellarg($fname)) . " | " .
+                                                          'tesseract stdin '.escapeshellarg($tmpname).' '.$config['tesseract_params']);
+				$tmpname .= ".txt";
+
+				$value = @file_get_contents($tmpname);
+				@unlink($tmpname);
+
+				if ($value && trim($value)) {
+					// This one has an effect, that the body is appended to a post body. So you can write a correct
+					// spamfilter.
+					$post['body_nomarkup'] .= "<tinyboard ocr image $key>".htmlspecialchars($value)."</tinyboard>";
+				}
+			}
+		}
 		
 		if (!isset($dont_copy_file) || !$dont_copy_file) {
 			if (isset($file['file_tmp'])) {
@@ -942,6 +970,11 @@ elseif (isset($_POST['post'])) {
 		}
 	}
 	
+	// Do filters again if OCRing
+	if ($config['tesseract_ocr'] && !hasPermission($config['mod']['bypass_filters'], $board['uri'])) {
+		do_filters($post);
+	}
+
 	if (!hasPermission($config['mod']['postunoriginal'], $board['uri']) && $config['robot_enable'] && checkRobot($post['body_nomarkup'])) {
 		undoImage($post);
 		if ($config['robot_mute']) {
