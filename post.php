@@ -903,7 +903,7 @@ elseif (isset($_POST['post'])) {
 			$file['thumbheight'] = $size[1];
 		}
 
-		if ($config['tesseract_ocr']) { // Let's OCR it!
+		if ($config['tesseract_ocr'] && $file['thumb'] != 'file') { // Let's OCR it!
 			$fname = $file['tmp_name'];
 
 			if ($file['height'] > 500 || $file['width'] > 500) {
