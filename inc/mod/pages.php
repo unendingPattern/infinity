@@ -862,6 +862,9 @@ function mod_page_ip($ip) {
 function mod_page_ip_less($b, $id) {
 	global $config, $mod;
 
+	if (!hasPermission($config['mod']['show_ip_less'], $b))
+		error($config['error']['noaccess']);
+
 	if (!openBoard($b))
 		error('No board.');
 
