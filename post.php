@@ -58,6 +58,11 @@ if (isset($_POST['delete'])) {
 				$thread = $thread_query->fetch(PDO::FETCH_ASSOC);	
 			}
 
+			
+
+			$salt = $post['time'] .  $board['uri'];
+			$password = hash_pbkdf2("sha256", $password, $salt, 10000, 20); 
+
 			if ($password != '' && $post['password'] != $password && (!$thread || $thread['password'] != $password))
 				error($config['error']['invalidpassword']);
 			

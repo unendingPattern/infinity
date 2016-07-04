@@ -1273,12 +1273,15 @@ function post(array $post) {
 	} else {
 		$query->bindValue(':trip', null, PDO::PARAM_NULL);
 	}
+
+	$salt = $post['time'] . $board['uri'];
+	$password = hash_pbkdf2("sha256", $post['password'], $salt, 10000, 20);
 	
 	$query->bindValue(':name', $post['name']);
 	$query->bindValue(':body', $post['body']);
 	$query->bindValue(':body_nomarkup', $post['body_nomarkup']);
 	$query->bindValue(':time', isset($post['time']) ? $post['time'] : time(), PDO::PARAM_INT);
-	$query->bindValue(':password', $post['password']);
+	$query->bindValue(':password', $password);
 	$query->bindValue(':ip', isset($post['ip']) ? $post['ip'] : $_SERVER['REMOTE_ADDR']);
 	
 	if ($post['op'] && $post['mod'] && isset($post['sticky']) && $post['sticky']) {
