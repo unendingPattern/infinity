@@ -147,6 +147,7 @@
 	$config['additional_javascript'][] = 'js/jquery-ui.custom.min.js';
 	$config['additional_javascript'][] = 'js/wPaint/8ch.js';
 	$config['additional_javascript'][] = 'js/wpaint.js';
+	$config['additional_javascript'][] = 'js/altchans.js';
 	// Code tags (fix because we no longer have different scripts for each board)
 	$config['additional_javascript'][] = 'js/code_tags/run_prettify.js';
 
@@ -235,6 +236,7 @@ $config['page_404'] = 'page_404';
 $config['convert_args'] = '-size %dx%d %s -thumbnail %dx%d -quality 85%% -background \'#d6daf0\' -alpha remove -auto-orient +profile "*" %s';
 
 // Flavor and design.
+$config['domain'] = "https://8ch.net"; // Customize me
 $config['site_name'] = "&infin;chan";
 #$config['site_logo'] = "/static/logo_33.svg";
 
