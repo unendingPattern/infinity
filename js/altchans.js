@@ -8,17 +8,19 @@ var altchans = [{name: "8ch.pl",     url: "https://8ch.pl/",      boards: "https
 //              {name: "librechan.net",    url: "https://librechan.net/",    boards: "https://8ch.pl/proxy.php?f=https://librechan.net/boards.html"}];
 // ];
 
-altchans = altchans.append(JSON.parse(localStorage.altchans || "[]"));
+altchans = altchans.concat(JSON.parse(localStorage.altchans || "[]"));
 
 $(function() {
   if (active_page == 'page' && $('#boardlist').length) {
     var ib_list = $('<div id="ib-list" class="description box col col-12">');
 
+    var ib_list_title = $('<strong>Alternative boards:</strong>').appendTo(ib_list);
+
     ib_list.insertBefore('div.board-list');
 
     altchans.forEach(function(chan) {
       var link = $('<a>').text(chan.name).attr('href', chan.url).appendTo(ib_list);
-      link.css('margin-right', 10);
+      link.css('margin-left', 10);
 
       link.click(function(e) {
         if (e.which != 1) return true;
