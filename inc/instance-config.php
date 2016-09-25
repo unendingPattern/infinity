@@ -242,6 +242,8 @@ $config['site_name'] = "&infin;chan";
 
 $config['tor_posting'] = true;
 
+$config['country_flags_condensed'] = false;
+
 // 8chan specific mod pages
 require '8chan-mod-config.php';
 
