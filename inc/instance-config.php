@@ -237,8 +237,13 @@ $config['convert_args'] = '-size %dx%d %s -thumbnail %dx%d -quality 85%% -backgr
 
 // Flavor and design.
 $config['domain'] = "https://8ch.net"; // Customize me
+$config['tor_domain'] = "http://vichandcxw4gm3wy.onion";
+
 $config['site_name'] = "&infin;chan";
-#$config['site_logo'] = "/static/logo_33.svg";
+$config['site_slogan'] = "8chan, the infinitely expanding imageboard";
+$config['site_logo'] = "/static/logo_33.svg";
+$config['site_description'] = "";
+$config['site_bitcoin'] = "1BUKMrz3BSr8tAnKGX7xpL7yPb1pVnJWkh";
 
 $config['tor_posting'] = true;
 

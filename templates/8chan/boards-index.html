@@ -9,27 +9,28 @@
 			<img src="/static/logo_33.svg" alt="logo" width="220" height="145" id="logo">
 		</div>
 		<div class="col col-5">
-			<p><em>{% trans %}Welcome to 8ch.pl, the infinitely expanding imageboard.{% endtrans %}</em></p>
-			<p>{% trans %}On 8ch.pl, you can create your own imageboard for free with no experience or programming knowledge needed.{% endtrans %}</p>
-			<p>8ch.pl is a 8chan clone made for those, who prefer the traditional 8chan look and feel. We are not affiliated with the original 8chan, we only re-use their old engine.</p>
+			<p><em>{% trans %}Welcome to{% endtrans %} {{ config.site_slogan }}</em></p>
+			<p>{% trans %}On{% endtrans %} {{ config.site_name }} {% trans %}you can create your own imageboard for free with no experience or programming knowledge needed.{% endtrans %}</p>
+			<p>{{ config.site_description }}</p>
 		</div>
 		<div class="col col-5" style="text-align:right">
-			<p style="color:red">{% trans %}Warning: Some boards on this site might contain content of an adult or offensive nature. Please cease use of this site if it is illegal for you to view such content. The boards on this site are made entirely by the users and do not represent the opinions of the administration of 8chan. In the interest of free speech, only content that directly violates the DMCA or other US laws is deleted.{% endtrans %}</p>
+			<p style="color:red">{% trans %}Warning: Some boards on this site might contain content of an adult or offensive nature. Please cease use of this site if it is illegal for you to view such content. The boards on this site are made entirely by the users and do not represent the opinions of the administration of this website. In the interest of free speech, only content that directly violates the DMCA or other US laws is deleted.{% endtrans %}</p>
 		</div>
 	</section>
 
 	<section class="description box col col-12">
-		<div class="col col-5" style="text-align:center">
+		<div class="col col-4" style="text-align:center">
 			<p><a href="/faq.html">about &amp; faq</a> / <a href="/create.php">create board</a> / <a href="/mod.php">manage board</a> / <a href="/random.php">random board</a></p>
 		</div>
-		<div class="col col-5" style="text-align:center">
-			<p style="word-break:break-all">8ch.pl Bitcoin address: 1BUKMrz3BSr8tAnKGX7xpL7yPb1pVnJWkh</p>
+		<div class="col col-6" style="text-align:center">
+			<p style="word-break:break-all">{{ config.site_name }} Bitcoin address: {{ config.site_bitcoin }} <a href="https://blockchain.info/address/{{ config.site_bitcoin}}">[history]</a></p>
 		</div>
-		<div class="col col-7" style="text-align:right">
-			<a href="http://8ch.vichandcxw4gm3wy.onion/" title="Click here to use 8ch via tor"><img src="/static/Tor-logo-2011-flat.svg" alt="logo" width="64" id="torlogo"></a>
+		<div class="col col-2" style="text-align:center">
+			<p><a href="{{ config.tor_domain }}/"><img src="/static/Tor-logo-2011-flat.svg" alt="logo" style="height: 1.2em" id="torlogo"> Use a tor hidden service</a></p>
 		</div>
 	</section>
 
+	<!-- The /n/ support is incomplete
 	<section class="description box col col-12">
 		<div class="col col-12" style="text-align:center">
 			<a href="/n/">Latest headlines</a>
@@ -45,6 +46,7 @@
 			</div>
 		{% endfor %}
 	</section>
+	-->
 
 	<section class="description box col col-12">
 		<h2 class="box-title">Global Statistics</h2>
