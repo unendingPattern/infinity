@@ -218,7 +218,7 @@
 			if ($size[0] > 20 or $size[0] < 11 or $size[1] > 16 or $size[1] < 11){
 				error(_('Image wrong size!'));
 			}
-			if (sizeof($banners) > 512) {
+			if (sizeof($banners) > 65536) {
 				error(_('Too many flags.'));
 			}
 
