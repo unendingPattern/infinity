@@ -416,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `board_stats` (
 --
 
 CREATE TABLE `nntp_references` (
-  `board` varchar(60) NOT NULL,
+  `board` varchar(30) NOT NULL,
   `id` int(11) unsigned NOT NULL,
   `message_id` varchar(255) CHARACTER SET ascii NOT NULL,
   `message_id_digest` varchar(40) CHARACTER SET ascii NOT NULL,
