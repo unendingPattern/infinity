@@ -418,7 +418,7 @@ function rebuildThemes($action, $boardname = false) {
 	$_board = $board;
 
 	// List themes
-	if ($themes = Cache::get("themes")) {
+	if ($config['cache']['enabled'] !== false && $themes = Cache::get("themes")) {
 		// OK, we already have themes loaded
 	}
 	else {
@@ -430,7 +430,7 @@ function rebuildThemes($action, $boardname = false) {
 			$themes[] = $theme;
 		}
 
-		Cache::set("themes", $themes);
+		$config['cache']['enabled'] !== false && Cache::set("themes", $themes);
 	}
 
 	foreach ($themes as $theme) {
