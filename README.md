@@ -31,7 +31,7 @@ A computer running a Unix or Unix-like OS(infinity has been specifically tested 
 Step 1. Create infinity's database from the included install.sql file. Enter mysql and create an empty database named 'infinity'. Then cd into the infinity base directory and run:
 ```
 mysql -uroot -p infinity < install.sql
-echo '+ <a href="https://github.com/ctrlcctrlv/infinity">infinity</a> '`git rev-parse HEAD|head -c 10` > .installed
+echo '+ <a href="https://github.com/unendingPattern/infinity">infinity</a> '`git rev-parse HEAD|head -c 10` > .installed
 ```
 **Local captcha provider won't work unless you run this!**
 ```
