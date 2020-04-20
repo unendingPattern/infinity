@@ -63,8 +63,8 @@ Step 4. Infinity can function in a *very* barebones fashion after the first two 
 ```
 ## Run these commands manually to make sure everything is being installed as intended!
 
-apt -y install gnupg wget sudo ca-certificates apt-transport-https python-software-properties
-# apt -y remove php* # remove your current php version, anything past 7.1 won't work with captcha
+apt-get install gnupg wget sudo ca-certificates apt-transport-https python-software-properties
+# apt-get remove php* # remove your current php version, anything past 7.1 won't work with captcha
 
 # Ubuntu: add repositories for nginx, ffmpeg and alternative php versions
 add-apt-repository ppa:nginx/stable
@@ -72,14 +72,15 @@ add-apt-repository ppa:jon-severinsson/ffmpeg
 add-apt-repository ppa:ondrej/php
 
 # Debian 9 (stretch): add repositories for alternative php versions
-# wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
-# echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
+wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
 
 apt-get update
 
 # install php5.6 (recommended) OR php7.1 (untested)
 # apt-get install php5.6-fpm php5.6-mysql php5.6-cli php5.6-apcu php5.6-dev php5.6-mcrypt php5.6-gd php-pear
 # apt-get install php7.1-fpm php7.1-mysql php7.1-cli php7.1-apcu php7.1-dev php7.1-mcrypt php7.1-gd php-pear
+
 apt-get install graphicsmagick gifsicle imagemagick
 apt-get install mariadb mariadb-client
 
