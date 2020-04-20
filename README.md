@@ -67,7 +67,7 @@ Now open secrets.php and edit the $config['db'] settings to point to the 'infini
 
 Step 3.(Optional) By default, infinity will ignore any changes you make to the template files until you log into mod.php, go to Rebuild, and select Flush Cache. You may find this inconvenient. To make infinity automatically accept your changes to the template files, set $config['twig_cache'].
 
-Step 4. Infinity can function in a *very* barebones fashion after the first two steps, but you should probably install these additional packages if you want to seriously run it and/or contribute to it. ffmpeg may fail to install under certain versions of ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
+Step 4. You need to install the following packages to be able to fully run and/or contribute to Infinity. ffmpeg may fail to install under certain versions of ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
 
 ```
 ## Run these commands manually to make sure everything is being installed as intended!
