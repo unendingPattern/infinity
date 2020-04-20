@@ -26,6 +26,11 @@ Step 1. Create infinity's database from the included install.sql file. Enter mys
 mysql -uroot -p infinity < install.sql
 echo '+ <a href="https://github.com/ctrlcctrlv/infinity">infinity</a> '`git rev-parse HEAD|head -c 10` > .installed
 ```
+**Local captcha provider won't work unless you run this!**
+```
+mysql -uroot -p infinity < 8chan-captcha/dbschema.sql
+```
+*This fixes `You seem to have mistyped the verification.`*!
 
 Step 2. /inc/secrets.php does not exist by default, but infinity needs it in order to function. To fix this, cd into /inc/ and run:
 ```
