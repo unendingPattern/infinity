@@ -16,7 +16,7 @@ If you are not interested in letting your users make their own boards, install v
 Installation
 ------------
 Basic requirements:
-A computer running a Unix or Unix-like OS(infinity has been specifically tested with and is known to work under Ubuntu 14.x), Nginx or Apache, MySQL, and PHP 5.6 (tested) or 7.1 (untested)
+A computer running a Unix or Unix-like OS(infinity has been specifically tested with and is known to work under Ubuntu 14.x and Debian 9), Nginx or Apache, MySQL, and PHP 5.6 (tested) or 7.1 (untested)
 
 **NOTE: Extension 'mcrypt' is deprecated since PHP 7.1 and removed since PHP 7.2! This will break captcha as it requires php-mcrypt to work!**
 
@@ -58,18 +58,22 @@ Now open secrets.php and edit the $config['db'] settings to point to the 'infini
 
 Step 3.(Optional) By default, infinity will ignore any changes you make to the template files until you log into mod.php, go to Rebuild, and select Flush Cache. You may find this inconvenient. To make infinity automatically accept your changes to the template files, set $config['twig_cache'].
 
-Step 4. Infinity can function in a *very* barebones fashion after the first two steps, but you should probably install these additional packages if you want to seriously run it and/or contribute to it. ffmpeg may fail to install under certain versions of Ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
+Step 4. Infinity can function in a *very* barebones fashion after the first two steps, but you should probably install these additional packages if you want to seriously run it and/or contribute to it. ffmpeg may fail to install under certain versions of ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
 
 ```
-apt -y install gnupg wget sudo ca-certificates apt-transport-https
+## Run these commands manually to make sure everything is being installed as intended!
+
+apt -y install gnupg wget sudo ca-certificates apt-transport-https python-software-properties
 # apt -y remove php* # remove your current php version, anything past 7.1 won't work with captcha
 
-# add repositories for nginx, ffmpeg and php7.1 or 5.6
+# Ubuntu: add repositories for nginx, ffmpeg and alternative php versions
 add-apt-repository ppa:nginx/stable
 add-apt-repository ppa:jon-severinsson/ffmpeg
+add-apt-repository ppa:ondrej/php
 
-wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
-echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
+# Debian 9 (stretch): add repositories for alternative php versions
+# wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+# echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
 
 apt-get update
 
