@@ -28,16 +28,25 @@ A computer running a Unix or Unix-like OS(infinity has been specifically tested 
 * `install.php` is not maintained. Don't use it.
 * As of February 22, 2015, you need the [DirectIO module (dio.so)](http://php.net/manual/en/ref.dio.php). This is for compatibility with NFS. 
 
-Step 1. Create infinity's database from the included install.sql file. Enter mysql and create an empty database named 'infinity'. Then cd into the infinity base directory and run:
+Step 1. Create infinity's database from the included install.sql file. Enter mysql and create an empty database named 'infinity':
+
+`mysql -u root -p`
+```
+CREATE DATABASE infinity;
+CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON infinity.* TO 'myuser'@'localhost';
+```
+
+Then cd into the infinity base directory and run:
 ```
 mysql -uroot -p infinity < install.sql
 echo '+ <a href="https://github.com/unendingPattern/infinity">infinity</a> '`git rev-parse HEAD|head -c 10` > .installed
 ```
-**Local captcha provider won't work unless you run this!**
+**Local captcha provider won't work unless you run this:**
 ```
 mysql -uroot -p infinity < 8chan-captcha/dbschema.sql
 ```
-*This fixes `You seem to have mistyped the verification.`*!
+*This fixes `You seem to have mistyped the verification`*!
 
 Step 2. /inc/secrets.php does not exist by default, but infinity needs it in order to function. To fix this, cd into /inc/ and run:
 ```
