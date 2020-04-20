@@ -16,8 +16,15 @@ If you are not interested in letting your users make their own boards, install v
 Installation
 ------------
 Basic requirements:
-A computer running a Unix or Unix-like OS(infinity has been specifically tested with and is known to work under Ubuntu 14.x), Apache, MySQL, and PHP
-* Make sure Apache has read/write access to the directory infinity resides in.
+A computer running a Unix or Unix-like OS(infinity has been specifically tested with and is known to work under Ubuntu 14.x), Nginx or Apache, MySQL, and PHP 5.6 (tested) or 7.1 (untested)
+
+**NOTE: Extension 'mcrypt' is deprecated since PHP 7.1 and removed since PHP 7.2! This will break captcha as it requires php-mcrypt to work!**
+
+**NOTE: PHP 5.6 AND 7.1 ARE OFFICIALLY END OF LIFE! https://www.php.net/supported-versions.php**
+
+**The captcha system would need to be rewritten to use openssl or pecl/mcrypt to support PHP versions past 7.1!**
+
+* Make sure your web server (apache or nginx) has read/write access to the directory infinity resides in. `chown -R www-data:www-data /path/to/infinity`
 * `install.php` is not maintained. Don't use it.
 * As of February 22, 2015, you need the [DirectIO module (dio.so)](http://php.net/manual/en/ref.dio.php). This is for compatibility with NFS. 
 
@@ -54,7 +61,50 @@ Step 3.(Optional) By default, infinity will ignore any changes you make to the t
 Step 4. Infinity can function in a *very* barebones fashion after the first two steps, but you should probably install these additional packages if you want to seriously run it and/or contribute to it. ffmpeg may fail to install under certain versions of Ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
 
 ```
-apt-get install graphicsmagick gifsicle php5-fpm mysql-client php5-mysql php5-cli php-pear php5-apcu php5-dev; add-apt-repository ppa:jon-severinsson/ffmpeg; add-apt-repository ppa:nginx/stable; apt-get update; apt-get install nginx ffmpeg; pear install Net_DNS2; pecl install "channel://pecl.php.net/dio-0.0.7"
+apt -y install gnupg wget sudo ca-certificates apt-transport-https
+# apt -y remove php* # remove your current php version, anything past 7.1 won't work with captcha
+
+# add repositories for nginx, ffmpeg and php7.1 or 5.6
+add-apt-repository ppa:nginx/stable
+add-apt-repository ppa:jon-severinsson/ffmpeg
+
+wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
+echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
+
+apt-get update
+
+# install php5.6 (recommended) OR php7.1 (untested)
+# apt-get install php5.6-fpm php5.6-mysql php5.6-cli php5.6-apcu php5.6-dev php5.6-mcrypt php5.6-gd php-pear
+# apt-get install php7.1-fpm php7.1-mysql php7.1-cli php7.1-apcu php7.1-dev php7.1-mcrypt php7.1-gd php-pear
+apt-get install graphicsmagick gifsicle imagemagick
+apt-get install mariadb mariadb-client
+
+pear install Net_DNS2
+pecl install "channel://pecl.php.net/dio-0.0.7
+
+php --version # verify that your installed version is being used
+
+# install ffmpeg
+ apt-get install ffmpeg
+
+# install apache OR nginx (per your own preference)
+# apt-get install apache2
+# apt-get install nginx
+```
+
+Step 5. Configure custom captcha provider and provider URLs in `inc/config.php` (line 320 and onward)
+```
+$config['captcha']['enabled'] = true;
+$config['captcha']['provider_get']   = 'http://my.board.address/8chan-captcha/entrypoint.php';
+$config['captcha']['provider_check'] = 'http://my.board.address/8chan-captcha/entrypoint.php';
+```
+
+Step 6. If using nginx enable php for your site by editing /etc/nginx/sites-enabled/default (or whatever file your site is defined in) and inserting the following line into your server section:
+```
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/run/php/php5.6-fpm.sock; # or php7.1-fpm.sock if using php7.1
+        }
 ```
 
 Page Generation
@@ -62,11 +112,11 @@ Page Generation
 A lot of the static pages (claim.html, boards.html, index.html) need to be regenerated every so often. You can do this with a crontab.
 
 ```cron
-*/10 * * * * cd /srv/http; /usr/bin/php /srv/http/boards.php
-*/5 * * * * cd /srv/http; /usr/bin/php /srv/http/claim.php
-*/20 * * * * cd /srv/http; /usr/bin/php -r 'include "inc/functions.php"; rebuildThemes("bans");'
+*/10 * * * * cd /path/to/infinity; /usr/bin/php /path/to/infinity/boards.php
+*/5 * * * * cd /path/to/infinity; /usr/bin/php /path/to/infinity/claim.php
+*/20 * * * * cd /path/to/infinity; /usr/bin/php -r 'include "inc/functions.php"; rebuildThemes("bans");'
 ```
 
 Also, main.js is empty by default. Run tools/rebuild.php to create it every time you update one of the JS files.
 
-Have fun!
+Good luck!
