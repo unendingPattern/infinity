@@ -121,6 +121,13 @@ Step 6. If using nginx enable php for your site by editing /etc/nginx/sites-enab
         }
 ```
 
+Management Login Details:
+-------------
+```
+username: admin
+password: password
+```
+
 Page Generation
 ------------
 A lot of the static pages (claim.html, boards.html, index.html) need to be regenerated every so often. You can do this with a crontab.
