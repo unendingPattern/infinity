@@ -96,7 +96,8 @@ buildIndex();
 
 rebuildThemes('boards');
 
-$query = prepare("INSERT INTO ``board_create``(uri) VALUES(:uri)");
+$query = prepare("INSERT INTO ``board_create`` VALUES(:time, :uri)");
+$query->bindValue(':time', time());
 $query->bindValue(':uri', $uri);
 $query->execute() or error(db_error());
 
