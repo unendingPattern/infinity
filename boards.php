@@ -71,6 +71,8 @@ if ($query) {
 	$newsplus = [];
 }
 
+include("recent_threads.php");
+
 $searchArray = array(
 		"config"         => $config,
 		"boards"         => $boards,
@@ -88,6 +90,7 @@ $searchArray = array(
 		
 		"founding_date"  => $founding_date,
 		"page_updated"   => date('r'),
+		"recent_threads" => $RT_HTML,
 		
 		"html_boards"    => $boardsHTML,
 		"html_tags"      => $tagsHTML,

@@ -458,10 +458,10 @@ if (isset($_POST['delete'])) {
 			//error($config['error']['bot']);
 	
 		// Check the referrer
-		if ($config['referer_match'] !== false &&
-			(!isset($_SERVER['HTTP_REFERER']) || !preg_match($config['referer_match'], rawurldecode($_SERVER['HTTP_REFERER'])))) {
-			error($config['error']['referer']);
-		}	
+		// if ($config['referer_match'] !== false &&
+		//	(!isset($_SERVER['HTTP_REFERER']) || !preg_match($config['referer_match'], rawurldecode($_SERVER['HTTP_REFERER'])))) {
+		//	error($config['error']['referer']);
+		// }	
 
 		if ($post['mod'] = isset($_POST['mod']) && $_POST['mod']) {
 			check_login(false);

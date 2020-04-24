@@ -5,6 +5,7 @@
 // I would name it "banner.php", but most adblocks have that blocked,
 // degrading the site quality for certain users.
 
+/* currently overloads and crashes php? disabling...?
 $board = isset($_GET['b']) ? $_GET['b'] : '';
 $dir = "static/banners/";
 $domain = "/";
@@ -28,3 +29,4 @@ while (!$banners) { // If the previous call failed or no banners
 $banner = $banners[array_rand($banners)]; // we pick a random banner
 
 header("Location: ".$domain.$banner);
+*/
